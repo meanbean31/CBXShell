@@ -40,6 +40,9 @@
 #define CBXTYPE_CBZ  2
 #define CBXTYPE_RAR  3
 #define CBXTYPE_CBR  4
+#define CBXTYPE_EPUB 5
+#define CBXTYPE_MOBI 6
+#define CBXTYPE_AZW 7
 
 #define CBX_APP_KEY _T("Software\\T800 Productions\\{9E6ECB90-5A61-42BD-B851-D3297D9C7F39}")
 
@@ -327,6 +330,18 @@ public:
 try {
 		switch (m_cbxType)
 		{
+		case CBXTYPE_EPUB:
+		{
+			// TODO: Support EPUB
+		}
+		break;
+
+		case CBXTYPE_MOBI:
+		{
+			// TODO: Support MOBI
+		}
+		break;
+
 		case CBXTYPE_ZIP:
 		case CBXTYPE_CBZ:
 			{
@@ -449,6 +464,7 @@ try {
 			return ((*phBmpThumbnail) ? S_OK : E_FAIL );
 			}//dtors!
 		break;
+
 		default:return E_FAIL;
 		}
 }
@@ -570,12 +586,14 @@ private:
 	inline CBXTYPE GetCBXType(LPCTSTR szExt)
 	{
 		if (StrEqual(szExt, _T(".cbz"))) return CBXTYPE_CBZ;
+		if (StrEqual(szExt, _T(".phz"))) return CBXTYPE_CBZ;
 		if (StrEqual(szExt, _T(".zip"))) return CBXTYPE_ZIP;
 		if (StrEqual(szExt, _T(".cbr"))) return CBXTYPE_CBR;
 		if (StrEqual(szExt, _T(".rar"))) return CBXTYPE_RAR;
-		//by popular demand
-		if (StrEqual(szExt, _T(".epub"))) return CBXTYPE_CBZ;
-		if (StrEqual(szExt, _T(".phz"))) return CBXTYPE_CBZ;
+		if (StrEqual(szExt, _T(".epub"))) return CBXTYPE_EPUB;
+		if (StrEqual(szExt, _T(".mobi"))) return CBXTYPE_MOBI;
+		if (StrEqual(szExt, _T(".azw"))) return CBXTYPE_MOBI;
+		if (StrEqual(szExt, _T(".azw3"))) return CBXTYPE_MOBI;
 	return CBXTYPE_NONE;
 	}
 
